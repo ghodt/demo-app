@@ -35,4 +35,4 @@ steps:
     pytest
   displayName: 'pytest'
   
-  - task: PublishBuildArtifacts@1
+- task: PublishBuildArtifacts@1
