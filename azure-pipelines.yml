@@ -37,6 +37,15 @@ steps:
   
 - task: PublishBuildArtifacts@1
 
+
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(Build.BinariesDirectory)'
+    includeRootFolder: true
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    replaceExistingArchive: true
+
 - task: AzureWebApp@1
   inputs:
     azureSubscription: 'Free Trial(8e26f9a6-4a92-4971-bcba-cc6c19b88aaf)'
