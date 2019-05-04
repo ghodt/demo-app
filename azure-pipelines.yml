@@ -3,6 +3,13 @@
 # Add steps that analyze code, save the dist with the build record, publish to a PyPI-compatible index, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/python
 
+variables:
+  # Replace this name with that of the Azure service connection in your DevOps project
+  ConnectedServiceName: 'Dat connection'
+
+  # Replace this name to match the name of the App Service you created earlier
+  WebAppName: 'devops-demo-emma-sara'
+
 trigger:
 - master
 
@@ -22,6 +29,11 @@ strategy:
 steps:
 - task: UsePythonVersion@0
   inputs:
+    versionSpec: '3.6'
+    architecture: 'x64'
+
+- task: UsePythonVersion@0
+  inputs:
     versionSpec: '$(python.version)'
   displayName: 'Use Python $(python.version)'
 
@@ -30,7 +42,42 @@ steps:
     pip install -r requirements.txt
   displayName: 'Install dependencies'
 
+# The | symbol is a continuation character, indicating a multi-line script.
+# A single-line script can immediately follows "- script:" without the |.
+- script: |
+    # antenv is the virtual environment name that App Service expects
+    python3.6 -m venv antenv
+    source antenv/bin/activate
+    pip3.6 install setuptools
+    pip3.6 install -r requirements.txt
+
+  # The displayName is shows in the pipeline UI when a build runs
+  displayName: 'Install Dependencies'
+
 - script: |
     pip install pytest pytest-azurepipelines
     pytest
   displayName: 'pytest'
+
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(Build.SourcesDirectory)'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/Application$(Build.BuildId).zip'
+    replaceExistingArchive: true
+    verbose: # (no value); this input is optional
+
+- task: AzureRMWebAppDeployment@4
+  displayName: Azure App Service Deploy
+  inputs:
+    appType: webAppLinux
+    RuntimeStack: 'PYTHON|3.6'
+    ConnectedServiceName: $(ConnectedServiceName)
+    WebAppName: $(WebAppName)
+    Package: '$(Build.ArtifactStagingDirectory)/Application$(Build.BuildId).zip'
+
+    # The following parameter is specific to the Flask example code. You may
+    # or may not need a startup command for your own app.
+
+    # StartupCommand: 'gunicorn --bind=0.0.0.0 --workers=4 startup:app'
