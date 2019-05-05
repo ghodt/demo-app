@@ -2,11 +2,12 @@ FROM ubuntu:16.04
 
 MAINTAINER Sara Ersson "sara.ersson@gmail.com"
 
+# Install python and git
 RUN apt-get update -y && \
     apt-get install -y python-pip python-dev && \
     apt-get install -y git
 
-# Install Flask
+# Install Flask 
 RUN pip install Flask
 
 # Install pytest
