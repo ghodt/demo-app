@@ -14,7 +14,7 @@ We have set up a Docker container for development that contains Python and Flask
 
 - Fork the repository.
 - Download the Docker image with `docker pull ghodt/devops-demo:latest`. 
-- To start the container run `docker run -it -p 5000:5000 ghodt/devops-demo`. The flag `-p 5000:5000` maps port 5000 on your local machine to port 5000 in the container (-p hostPort:containerPort). The host port can be changed if wanted.
+- To start the container run `docker run -it -p 5000:5000 ghodt/devops-demo`. The flag `-p 5000:5000` maps port 5000 on your local machine to port 5000 in the container (`-p hostPort:containerPort`). The host port can be changed if wanted.
 - When the container has started, clone your fork of the repo into the container with `git clone <link to fork>`.
 - Start developing!
 
@@ -24,6 +24,8 @@ When developing, the application can be previewed by running `python app.py` whi
 
 The website can be accessed on your local machine by browsing to `localhost:5000` in your browser.
 
+To run the tests, navigate to the tests folder and run `py.test`.
+
 ## CI/CD
 
-The application is deployed with Microsoft Azure. When a push is made to the repository it will run the test automatically, build the application, and deploy it to the [Demo site](https://devops-demo-emma-sara.azurewebsites.net/).
+The application is deployed with Microsoft Azure. When a push is made to the repository it will run the test automatically, build the application, and deploy it to the [demo site](https://devops-demo-emma-sara.azurewebsites.net/).
