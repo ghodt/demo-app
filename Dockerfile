@@ -6,10 +6,11 @@ RUN apt-get update -y && \
     apt-get install -y python-pip python-dev && \
     apt-get install -y git
 
-RUN git clone https://github.com/ghodt/demo-app.git /demo-app
+# Install Flask
+RUN pip install Flask
 
-WORKDIR /demo-app
+# Install pytest
+RUN pip install pytest
 
-RUN pip install -r requirements.txt
-
+# Expose port 5000 in the container
 EXPOSE 5000
