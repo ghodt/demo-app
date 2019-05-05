@@ -4,6 +4,10 @@
 
 ## Introduction
 
+This is a demo website for the course DD2482 Automated testing and DevOps at KTH. The application uses Azure DevOps to run automated tests, build the application, and deploy it in the cloud. We use Docker to install dependencies and ensure a consistent development environment.
+
+This demo was developed by Emma Good, egood@kth.se and Sara Ersson, saraers@kth.se.
+
 ## Getting started
 
 We have set up a Docker container for development that contains Python and Flask. To use the Docker container you need to have Docker installed.
@@ -11,7 +15,7 @@ We have set up a Docker container for development that contains Python and Flask
 - Fork the repository.
 - Download the Docker image with `docker pull ghodt/devops-demo:latest`. 
 - To start the container run `docker run -it -p 5000:5000 ghodt/devops-demo`. The flag `-p 5000:5000` maps port 5000 on your local machine to port 5000 in the container (-p hostPort:containerPort). The host port can be changed if wanted.
-- When the container has started, clone your fork of the repo into the container with `git clone <clone link> demo-app/`.
+- When the container has started, clone your fork of the repo into the container with `git clone <link to fork>`.
 - Start developing!
 
 ## During development
