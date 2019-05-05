@@ -6,10 +6,6 @@ RUN apt-get update -y && \
     apt-get install -y python-pip python-dev && \
     apt-get install -y git
 
-RUN git clone https://github.com/ghodt/demo-app.git /demo-app
-
-WORKDIR /demo-app
-
-RUN pip install -r requirements.txt
+RUN pip install Flask
 
 EXPOSE 5000
