@@ -54,7 +54,7 @@ steps:
 
 - script: |
     pip install pytest pytest-azurepipelines pytest-cov
-    pytest  --cov-report xml:report.xml
+    pytest  --cov-report=xml
   # --junitxml=$(Build.StagingDirectory)/report.xml
   displayName: 'pytest'
 
