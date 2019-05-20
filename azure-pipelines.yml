@@ -89,7 +89,7 @@ steps:
   displayName: Azure App Service Deploy
   inputs:
     appType: webAppLinux
-    RuntimeStack: 'PYTHON|3.6'
+    RuntimeStack: 'PYTHON|3.7'
     ConnectedServiceName: $(ConnectedServiceName)
     WebAppName: $(WebAppName)
     Package: '$(Build.ArtifactStagingDirectory)/Application$(Build.BuildId).zip'
