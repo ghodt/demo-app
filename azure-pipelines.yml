@@ -64,7 +64,7 @@ steps:
   inputs:
     codeCoverageTool: 'cobertura' 
     # Options: cobertura, jaCoCo
-    summaryFileLocation: '$(Build.SourcesDirectory)/coverage.xml'
+    summaryFileLocation: '$(Build.SourcesDirectory)/test-cov.xml'
     #reportDirectory: # Optional
     #additionalCodeCoverageFiles: # Optional
     #failIfCoverageEmpty: false # Optional
