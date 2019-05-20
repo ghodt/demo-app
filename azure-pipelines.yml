@@ -19,8 +19,6 @@ strategy:
   matrix:
     Python27:
       python.version: '2.7'
-    Python35:
-      python.version: '3.5'
     Python36:
       python.version: '3.6'
     Python37:
@@ -55,9 +53,27 @@ steps:
   displayName: 'Install Dependencies'
 
 - script: |
-    pip install pytest pytest-azurepipelines
-    pytest
+    pip install pytest pytest-azurepipelines pytest-cov
+    pytest --cov=tests/ --cov-report=xml --cov-branch
+  #  --cov=$(Build.StagingDirectory) tests/ --junitxml=$(Build.StagingDirectory)/cov.xml
   displayName: 'pytest'
+
+# Publish Code Coverage Results
+# Publish Cobertura or JaCoCo code coverage results from a build
+- task: PublishCodeCoverageResults@1
+  inputs:
+    codeCoverageTool: 'cobertura' 
+    # Options: cobertura, jaCoCo
+    summaryFileLocation: '$(Build.SourcesDirectory)/test-cov.xml'
+    #reportDirectory: # Optional
+    #additionalCodeCoverageFiles: # Optional
+    #failIfCoverageEmpty: false # Optional
+
+- task: PublishTestResults@2
+  displayName: 'Publish test result /test-output.xml'
+  inputs:
+    testResultsFiles: '$(Build.SourcesDirectory)/test-output.xml'
+    testRunTitle: Tests
 
 - task: ArchiveFiles@2
   inputs:

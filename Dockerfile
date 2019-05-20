@@ -2,11 +2,13 @@ FROM ubuntu:16.04
 
 MAINTAINER Sara Ersson "sara.ersson@gmail.com"
 
+# Install python, git, and vim
 RUN apt-get update -y && \
     apt-get install -y python-pip python-dev && \
-    apt-get install -y git
+    apt-get install -y git && \
+    apt-get install -y vim
 
-# Install Flask
+# Install Flask 
 RUN pip install Flask
 
 # Install pytest
