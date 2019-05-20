@@ -54,7 +54,7 @@ steps:
 
 - script: |
     pip install pytest pytest-azurepipelines pytest-cov
-    pytest --cov-report=xml
+    pytest --cov=tests/ --cov-report=xml
   #  --cov=$(Build.StagingDirectory) tests/ --junitxml=$(Build.StagingDirectory)/cov.xml
   displayName: 'pytest'
 
@@ -64,7 +64,7 @@ steps:
   inputs:
     codeCoverageTool: 'cobertura' 
     # Options: cobertura, jaCoCo
-    summaryFileLocation: '$(Build.SourcesDirectory)/cov.xml'
+    summaryFileLocation: '$(Build.SourcesDirectory)/coverage.xml'
     #reportDirectory: # Optional
     #additionalCodeCoverageFiles: # Optional
     #failIfCoverageEmpty: false # Optional
