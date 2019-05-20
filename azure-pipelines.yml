@@ -54,7 +54,7 @@ steps:
 
 - script: |
     pip install pytest pytest-azurepipelines pytest-cov
-    pytest --junitxml=$(Build.StagingDirectory)/report.xml --cov
+    pytest --junitxml=$(Build.StagingDirectory)/report.xml --cov-report xml
   displayName: 'pytest'
 
 - task: PublishTestResults@2
