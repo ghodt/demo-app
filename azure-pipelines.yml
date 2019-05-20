@@ -61,7 +61,7 @@ steps:
 - task: PublishTestResults@2
   displayName: 'Publish test result /test-output.xml'
   inputs:
-    testResultsFiles: '$(Build.StagingDirectory)/test-output.xml'
+    testResultsFiles: '$(Build.SourcesDirectory)/test-output.xml'
     testRunTitle: Tests
 
 - task: ArchiveFiles@2
