@@ -19,8 +19,8 @@ strategy:
   matrix:
     Python27:
       python.version: '2.7'
-    Python36:
-      python.version: '3.6'
+    #Python36:
+    #  python.version: '3.6'
     Python37:
       python.version: '3.7'
 
@@ -61,6 +61,7 @@ steps:
 # Publish Code Coverage Results
 # Publish Cobertura or JaCoCo code coverage results from a build
 - task: PublishCodeCoverageResults@1
+  displayName: Publish code coverage results
   inputs:
     codeCoverageTool: 'cobertura' 
     # Options: cobertura, jaCoCo
@@ -70,7 +71,7 @@ steps:
     #failIfCoverageEmpty: false # Optional
 
 - task: PublishTestResults@2
-  displayName: 'Publish test result /test-output.xml'
+  displayName: 'Publish test results'
   inputs:
     testResultsFiles: '$(Build.SourcesDirectory)/test-output.xml'
     testRunTitle: Tests
