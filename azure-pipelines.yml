@@ -54,8 +54,8 @@ steps:
 
 - script: |
     pip install pytest pytest-azurepipelines pytest-cov
-    pytest  --cov=$(Build.StagingDirectory) tests/
-  # --junitxml=$(Build.StagingDirectory)/report.xml
+    pytest --junitxml=$(Build.StagingDirectory)/report.xml
+  #  --cov=$(Build.StagingDirectory) tests/
   displayName: 'pytest'
 
 # Publish Code Coverage Results
