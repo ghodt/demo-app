@@ -54,9 +54,20 @@ steps:
 
 - script: |
     pip install pytest pytest-azurepipelines pytest-cov
-    pytest  --cov-report=xml
+    pytest  --cov=demo-app tests/
   # --junitxml=$(Build.StagingDirectory)/report.xml
   displayName: 'pytest'
+
+# Publish Code Coverage Results
+# Publish Cobertura or JaCoCo code coverage results from a build
+- task: PublishCodeCoverageResults@1
+  inputs:
+    codeCoverageTool: 'cobertura' 
+    # Options: cobertura, jaCoCo
+    summaryFileLocation: '$(Build.SourcesDirectory)'
+    #reportDirectory: # Optional
+    #additionalCodeCoverageFiles: # Optional
+    #failIfCoverageEmpty: false # Optional
 
 - task: PublishTestResults@2
   displayName: 'Publish test result /test-output.xml'
