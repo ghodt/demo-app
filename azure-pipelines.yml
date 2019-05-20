@@ -59,9 +59,9 @@ steps:
   displayName: 'pytest'
 
 - task: PublishTestResults@2
-  displayName: 'Publish test result /report.xml'
+  displayName: 'Publish test result /test-output.xml'
   inputs:
-    testResultsFiles: '$(Build.StagingDirectory)/report.xml'
+    testResultsFiles: '$(Build.StagingDirectory)/test-output.xml'
     testRunTitle: Tests
 
 - task: ArchiveFiles@2
