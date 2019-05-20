@@ -54,7 +54,7 @@ steps:
 
 - script: |
     pip install pytest pytest-azurepipelines pytest-cov
-    pytest  --cov=demo-app tests/
+    pytest  --cov=$(Build.StagingDirectory) tests/
   # --junitxml=$(Build.StagingDirectory)/report.xml
   displayName: 'pytest'
 
