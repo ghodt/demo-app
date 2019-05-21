@@ -56,7 +56,7 @@ steps:
     pip install pytest pytest-azurepipelines pytest-cov
     pytest --cov=tests/ --cov-report=xml --cov-branch
   #  --cov=$(Build.StagingDirectory) tests/ --junitxml=$(Build.StagingDirectory)/cov.xml
-  displayName: 'pytest'
+  displayName: 'Run tests and measure coverage'
 
 # Publish Code Coverage Results
 # Publish Cobertura or JaCoCo code coverage results from a build
